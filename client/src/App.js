@@ -9,14 +9,16 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+import Nav from './components/Nav';
+
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Nav from './components/Nav';
-import { StoreProvider } from "./utils/GlobalState";
 import OrderHistory from './pages/OrderHistory';
+
+import { StoreProvider } from "./utils/GlobalState";
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -38,14 +40,12 @@ const client = new ApolloClient({
 });
 
 function App() {
-
   return (
     <ApolloProvider client={client}>
       <Router>
         <div>
           <StoreProvider>
             <Nav />
-            {/* <switch> */}
             {/* <Routes> */}
               <Route 
                 path="/" 
@@ -71,14 +71,12 @@ function App() {
                 path="*" 
                 element={<NoMatch />}
               />
-            {/* </Routes> */}
+             {/* </Routes> */}
           </StoreProvider>
-          {/* </switch> */}
         </div>
       </Router>
     </ApolloProvider>
   );
 }
-
 
 export default App;
