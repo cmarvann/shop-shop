@@ -15,7 +15,12 @@ import {
   
   export const reducer = (state, action) => {
     switch (action.type) {
-      
+      case UPDATE_PRODUCTS:
+      return {
+        ...state,
+        products: [...action.products],
+      };
+
     case ADD_TO_CART:
       return {
        ...state,
@@ -28,6 +33,19 @@ import {
       return {
         ...state,
         cart: [...state.cart, ...action.products],
+      };
+
+         // 6th tes to pass 
+      case UPDATE_CART_QUANTITY:
+        return {
+          ...state,
+          cartOpen: true,
+          cart: state.cart.map(product => {
+            if (action._id === product._id) {
+            product.purchaseQuantity = action.purchaseQuantity;
+        }
+         return product;
+      })
       };
          
       // 5th test to pass  b
@@ -42,19 +60,6 @@ import {
           cart: newState
         };
 
-       // 6th tes to pass 
-      case UPDATE_CART_QUANTITY:
-        return {
-          ...state,
-          cartOpen: true,
-          cart: state.cart.map(product => {
-            if (action._id === product._id) {
-            product.purchaseQuantity = action.purchaseQuantity;
-        }
-         return product;
-      })
-      };
-        
       // 7th test to pass  
       case CLEAR_CART:
         return {
@@ -64,19 +69,11 @@ import {
         };
       
       // 8th test to pass  
-    case TOGGLE_CART:
-      return {
-       ...state,
-       cartOpen: !state.cartOpen
-  };
-
-
-      // if action type value is the value of `UPDATE_PRODUCTS`, return a new state object with an updated products array
-      case UPDATE_PRODUCTS:
+      case TOGGLE_CART:
         return {
           ...state,
-          products: [...action.products],
-        };
+          cartOpen: !state.cartOpen
+      };
 
        // if action type value is the value of `UPDATE_CATEGORIES`, return a new state object with an updated categories array
         case UPDATE_CATEGORIES:
