@@ -16,8 +16,6 @@ import {
   // create a sample of what our global state will look like
   const initialState = {
     products: [],
-    categories: [{ name: 'Food' }],
-    currentCategory: '1',
     cart: [
       {
         _id: '1',
