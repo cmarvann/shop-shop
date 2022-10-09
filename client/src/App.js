@@ -17,8 +17,8 @@ import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import OrderHistory from './pages/OrderHistory';
-
 import { StoreProvider } from "./utils/GlobalState";
+import Success from './pages/Success';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -58,6 +58,10 @@ function App() {
               <Route 
                 path="/signup" 
                 element={<Signup />} 
+              />
+              <Route 
+                path="/success" 
+                element={<Success />} 
               />
               <Route 
                 path="/orderHistory" 
